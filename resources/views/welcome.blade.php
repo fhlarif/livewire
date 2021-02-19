@@ -19,14 +19,16 @@
                 font-family: 'Nunito';
             }
         </style>
+
+        @livewireStyles
     </head>
     <body class="antialiased">
       
       
       
-        Hello world
+       @livewire('hello-world')
     
     
-    
+    @livewireScripts
     </body>
 </html>
