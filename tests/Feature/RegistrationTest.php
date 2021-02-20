@@ -28,15 +28,13 @@ class RegistrationTest extends TestCase
         ->assertOk();
         $this->then_redirect();
 
-        $poop=$this->get(\route('register.success'));
-        // $poop->assertRedirect();
-
 
     }
 
     public function then_redirect(){
-        $response = $this->get(\route('register.success'));
-        $response->assertStatus(200)
+        $response = $this->get(\route('welcome'));
+        $response->assertStatus(200);
+        $response->assertViewIs('welcome')
         ;
 
     }

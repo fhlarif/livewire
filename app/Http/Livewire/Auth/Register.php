@@ -27,7 +27,7 @@ class Register extends Component
             'password'=> Hash::make($this->password),
         ]);
 
-        return redirect()->route('register.success');
+        return redirect()->route('welcome');
         // return redirect()->route('register.success');
     }
 
