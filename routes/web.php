@@ -13,6 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/',function(){
+   echo 'Welcome';
+})->name('register.success');
+
+/* Registration */
+/* Full-Page Components */
+Route::get('/register',App\Http\Livewire\Auth\Register::class)->name('livewire.register');
+/* Components */
+// Route::get('/register',function(){
+//     return view('register');
+// })->name('livewire.register');
+
+

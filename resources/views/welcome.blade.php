@@ -26,7 +26,7 @@
       
       
       
-       @livewire('hello-world')
+       @livewire('hello-world',['name'=> 'Chichilala'])
     
     
     @livewireScripts
