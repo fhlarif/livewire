@@ -21,14 +21,21 @@ class Register extends Component
             'name'=>'required',
         ]);
 
-        User::create([
+       $user = User::create([
             'email'=> $this->email,
             'name'=> $this->name,
             'password'=> Hash::make($this->password),
         ]);
 
-        return redirect()->route('welcome');
+      //  auth()->login($user);
+       // dd(  auth()->login($user));
+
+        return $this->getRedirect();
         // return redirect()->route('register.success');
+    }
+
+    public function getRedirect(){
+        return redirect()->route('welcome');
     }
 
     public function render()

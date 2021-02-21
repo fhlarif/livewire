@@ -18,7 +18,7 @@ Route::get('/welcome', function () {
 })->name('welcome');
 
 Route::get('/',function(){
-   echo 'Welcome';
+  // echo 'Welcome';
 })->name('register.success');
 
 /* Registration */
