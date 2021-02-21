@@ -24,6 +24,8 @@ Route::get('/',function(){
 /* Registration */
 /* Full-Page Components */
 Route::get('/register',App\Http\Livewire\Auth\Register::class)->name('livewire.register');
+Route::get('/login',App\Http\Livewire\Auth\Login::class)->name('livewire.login');
+
 /* Components */
 // Route::get('/register',function(){
 //     return view('register');

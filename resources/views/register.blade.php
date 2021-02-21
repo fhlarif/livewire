@@ -6,4 +6,4 @@
 @livewire('auth.register')
 
 @endsection --}}
-       
+

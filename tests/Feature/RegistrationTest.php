@@ -20,7 +20,7 @@ class RegistrationTest extends TestCase
     }
 
     /** @test */
-    public function user_can_register()
+    public function all_field_available()
     {
         Livewire::test(Register::class)
         ->set('name', 'fathul')

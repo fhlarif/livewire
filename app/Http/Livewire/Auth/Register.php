@@ -13,35 +13,38 @@ class Register extends Component
     public $name ='';
     public $passwordConfirmation ='';
 
-    public function updatedEmail($field){
-         $this->validate(['email'=>'unique:users']);
+    /* Real Time Validation */
+    public function updatedEmail($field)
+    {
+        $this->validate(['email'=>'unique:users']);
 
         //dd($field);
     }
 
 
-    public function register(){
-
-        $data = $this->validate([
+    public function register()
+    {
+        $this->validate([
             'email'=>'required|email|unique:users',
             'password'=>'required|min:6|same:passwordConfirmation',
             'name'=>'required',
         ]);
 
-       $user = User::create([
+        User::create([
             'email'=> $this->email,
             'name'=> $this->name,
             'password'=> Hash::make($this->password),
         ]);
 
-      //  auth()->login($user);
-       // dd(  auth()->login($user));
+        //  auth()->login($user);
+        // dd(  auth()->login($user));
 
         return $this->getRedirect();
         // return redirect()->route('register.success');
     }
 
-    public function getRedirect(){
+    public function getRedirect()
+    {
         return redirect()->route('welcome');
     }
 
