@@ -13,6 +13,13 @@ class Register extends Component
     public $name ='';
     public $passwordConfirmation ='';
 
+    public function updatedEmail($field){
+         $this->validate(['email'=>'unique:users']);
+
+        //dd($field);
+    }
+
+
     public function register(){
 
         $data = $this->validate([
@@ -37,6 +44,7 @@ class Register extends Component
     public function getRedirect(){
         return redirect()->route('welcome');
     }
+
 
     public function render()
     {

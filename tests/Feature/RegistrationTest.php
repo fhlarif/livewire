@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\Feature;
+
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
@@ -10,9 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class RegistrationTest extends TestCase
 {
-
-
-
     use RefreshDatabase;
 
     /** @test */
@@ -33,15 +31,15 @@ class RegistrationTest extends TestCase
         ->assertOk();
     }
 
-     /** @test */
-     public function can_detect_redirect()
-     {
-         $component = Livewire::test(Register::class)->call('getRedirect');
+    /** @test */
+    public function can_detect_redirect()
+    {
+        $component = Livewire::test(Register::class)->call('getRedirect');
 
-       //  $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
+        //  $this->expectException(\PHPUnit\Framework\AssertionFailedError::class);
 
-         $component->assertRedirect();
-     }
+        $component->assertRedirect();
+    }
 
 
     /** @test */
@@ -64,21 +62,19 @@ class RegistrationTest extends TestCase
         ->assertHasErrors(['name'=>'required'])
         ->assertHasErrors(['email'=>'required'])
         ->assertHasErrors(['password'=>'required']);
-
     }
 
     /** @test */
     public function table_can_be_inserted()
     {
-       $user= User::create([
+        $user= User::create([
         'name' => 'momo',
         'email'=>'fathulkb@dsd.com',
         'password'=>Hash::make('$value')
     ]);
-       $this->assertDatabaseHas('users',[
+        $this->assertDatabaseHas('users', [
         'id'=>$user->id,
        ]);
-
     }
 
     /** @test */
@@ -95,6 +91,24 @@ class RegistrationTest extends TestCase
         ->set('password', '')
         ->call('register')
         ->assertHasErrors(['email'=>'unique']);
+    }
+
+    /** @test */
+    public function see_email_must_be_unique_error_message_realtime()
+    {
+        $check=Livewire::test(Register::class)
+
+        ->set('email', 'fathulkb@dsd.com')
+         ->assertHasNoErrors();
+
+        $usercreated=User::create([
+            'name' => 'momo',
+            'email'=>'fathulkb@dsd.com',
+            'password'=>Hash::make('$value')
+        ]);
+
+        $check->set('email', 'fathulkb@dsd.com')
+         ->assertHasErrors(['email'=>'unique']);
     }
 
     /** @test */
